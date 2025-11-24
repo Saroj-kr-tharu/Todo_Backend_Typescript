@@ -1,0 +1,20 @@
+{
+    "extends": "@tsconfig/node22/tsconfig.json",
+    "compilerOptions": {
+        "target": "es6",
+        "module": "Node16",
+        "moduleResolution": "Node16",
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/migrations/20251124050405-create-tasks.js",
+        "src/migrations/20251124050405-create-tasks.js",
+        "src/migrations/20251124050324-create-users.js"
+    ]
+}
