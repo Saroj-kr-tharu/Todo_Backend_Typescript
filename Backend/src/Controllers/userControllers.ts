@@ -21,7 +21,7 @@ class AuthController {
         } catch (error:any) {
         console.log("Something went wrong in controller level (add role)");
         return res.status(401).json({
-            message: "Unable to check Role",
+            message: "Unable to regiester",
             success: false,
             data: {},
             err: error.message || error,

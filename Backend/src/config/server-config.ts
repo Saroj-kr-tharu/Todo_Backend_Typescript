@@ -26,5 +26,6 @@ export default {
     PORT  : process.env.PORT,
     salt: bcrypt.genSaltSync(10),
     PRIVATEJWT: process.env.PRIVATEJWT as string,
+    FORTEND_URL: process.env.FORTEND_URL as string,
     
 }

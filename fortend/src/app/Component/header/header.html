@@ -1,0 +1,47 @@
+<nav class="shadow fixed left-0 right-0 z-50 bg-[#bdbdbdc7] ">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo on the left -->
+            <a routerLink="/" class="flex items-center">
+                <span class="text-xl font-bold text-[#481B74]">TodoApp</span>
+            </a>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button (click)="toggleMobileMenu()" class="text-gray-700 hover:text-[#481B74] focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        @if (!isMobileMenuOpen()) {
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                        }
+                        @if (isMobileMenuOpen()) {
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                        }
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex md:items-center md:space-x-4">
+
+                @for (link of navLinks; track $index) {
+                <a routerLink={{link.to}} routerLinkActive="text-white bg-[#481B74]"
+                    class="text-gray-700 hover:text-white hover:bg-[#481B74] px-3 py-2 rounded-md text-sm font-medium">{{link.text}}</a>
+                }
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div [appIsMobileView]="isMobileMenuOpen()">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                @for (link of navLinks; track $index) {
+                <a (click)="toggleMobileMenu()" routerLink={{link.to}} routerLinkActive="text-white bg-[#481B74]"
+                    class="text-gray-700 hover:text-white hover:bg-[#481B74] block px-3 py-2 rounded-md text-base font-medium">{{link.text}}</a>
+                }
+
+            </div>
+        </div>
+
+    </div>
+</nav>
