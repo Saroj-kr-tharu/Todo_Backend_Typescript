@@ -13,5 +13,5 @@ RUN  npm ci
 #copy all the file for the host to working directory 
 COPY . .
 
-CMD [ "ng", "serve"]
+CMD [ "npm", "start"]
 # cmd when container is on 

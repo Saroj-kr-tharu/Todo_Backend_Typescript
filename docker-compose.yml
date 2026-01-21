@@ -43,12 +43,12 @@ services:
     env_file:
       - environment/.env.backend
     depends_on:
-      mysql:
+      mysq_service:
         condition: service_healthy
       
 
   frontend_service:
-    image: sarojdockerworkspace/expense_tracker_frontend:latest
+    image: sarojdockerworkspace/todo_typescript_fortend:latest
     build: 
       context: ./fortend
       dockerfile: Dockerfile
@@ -58,11 +58,11 @@ services:
     ports:
       - "8000:4200"
     volumes:
-      - ./frontend:/developer/fortend
+      - ./fortend:/developer/fortend
       -  frontend_vol:/developer/fortend/node_modules
     env_file:
       - environment/.env.fortend
     depends_on:
-      mysql: 
+      mysq_service: 
         condition: service_healthy
     
