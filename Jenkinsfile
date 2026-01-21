@@ -29,7 +29,7 @@ pipeline{
 
                         rm -rf fortend/src/environment
                         mkdir -p fortend/src/environment
-                        cp $FRONTEND_ENV environment/environment.ts
+                        cp $FRONTEND_ENV fortend/src/environment/environment.ts
                     '''
                 }
          } }
