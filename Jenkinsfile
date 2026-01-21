@@ -20,7 +20,7 @@ pipeline{
 
                 withCredentials( [
                     file(credentialsId: 'env-backend-todo-app', variable: 'BACKEND_ENV'),
-                    file(credentialsId: 'env-frontend-todo-app', variable: 'FRONTEND_ENV'),
+                    file(credentialsId: 'environment-todo', variable: 'FRONTEND_ENV'),
                     file(credentialsId: 'env-mysql', variable: 'MYSQL_ENV')
                 ] ){
                     sh '''
