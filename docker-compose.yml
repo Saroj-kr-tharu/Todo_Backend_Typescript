@@ -1,0 +1,68 @@
+networks:
+  # define network
+  Micro_net:
+    name: Micro_net
+    driver: bridge
+
+volumes:
+  mysql_vol:
+  backend_vol:
+  frontend_vol:
+
+services:
+ 
+  mysq_service:
+    container_name: mysq_service
+    image: mysql:8.0
+    networks:
+      - Micro_net
+    volumes:
+      - mysql_vol:/var/lib/mysql
+    env_file:
+      - environment/.env.mysql
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p12345"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend_service:
+    image: sarojdockerworkspace/todo_typescript_backend:latest
+    build: 
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: backend_service
+    networks:
+      - Micro_net
+    # ports:
+    #   - "3000:3000"
+    volumes:
+      - ./Backend:/developer/backend 
+      -  backend_vol:/developer/backend/node_modules
+    env_file:
+      - environment/.env.backend
+    depends_on:
+      mysql:
+        condition: service_healthy
+      
+
+  frontend_service:
+    image: sarojdockerworkspace/expense_tracker_frontend:latest
+    build: 
+      context: ./fortend
+      dockerfile: Dockerfile
+    container_name: frontend_service
+    networks:
+      - Micro_net
+    ports:
+      - "8000:4200"
+    volumes:
+      - ./frontend:/developer/fortend
+      -  frontend_vol:/developer/fortend/node_modules
+    env_file:
+      - environment/.env.fortend
+    depends_on:
+      mysql: 
+        condition: service_healthy
+    

@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngxpert/hot-toast';
+import { environment } from '../../environment/environment';
 import { Todo } from '../Model/todo.type';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -11,7 +11,7 @@ export class TodoService {
 
   httpClient = inject(HttpClient);
   
-  baseUrl= `http://localhost:3000/api/v1/task`  
+  baseUrl= environment.API_BASE_URL;
 
   toast=inject(HotToastService)
   router = inject(Router)
