@@ -3,7 +3,9 @@ pipeline{
 
     stages{
         stage("Clone Code"){ steps{
-            git url "https://github.com/Saroj-kr-tharu/Todo_Backend_Typescript", branch :"main"
+            git url : "https://github.com/Saroj-kr-tharu/Todo_Backend_Typescript", branch :"main"
+
+            
          } }
 
         stage("scan file system"){ steps{ 
