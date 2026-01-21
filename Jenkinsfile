@@ -16,6 +16,8 @@ pipeline{
                 sh "rm -rf environment"
                 sh "mkdir -p environment"
 
+                
+
                 withCredentials( [
                     file(credentialsId: 'env-backend-todo-app', variable: 'BACKEND_ENV'),
                     file(credentialsId: 'env-frontend-todo-app', variable: 'FRONTEND_ENV'),
@@ -24,7 +26,10 @@ pipeline{
                     sh '''
                         cp $MYSQL_ENV environment/.env.mysql
                         cp $BACKEND_ENV environment/.env.backend
-                        cp $FRONTEND_ENV environment/.env.fortend
+
+                        rm -rf fortend/src/environment
+                        mkdir -p fortend/src/environment
+                        cp $FRONTEND_ENV environment/environment.ts
                     '''
                 }
          } }
