@@ -60,8 +60,7 @@ services:
     volumes:
       - ./fortend:/developer/fortend
       -  frontend_vol:/developer/fortend/node_modules
-    env_file:
-      - environment/.env.fortend
+   
     depends_on:
       mysq_service: 
         condition: service_healthy
