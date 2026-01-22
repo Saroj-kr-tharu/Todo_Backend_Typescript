@@ -49,7 +49,7 @@ pipeline{
             } 
          }
         stage("docker run "){ steps{
-             sh "docker compose up  -d "
+             sh "docker compose u  -d "
          } }
     }
 
