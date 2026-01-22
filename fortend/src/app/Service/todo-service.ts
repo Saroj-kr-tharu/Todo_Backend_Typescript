@@ -11,7 +11,7 @@ export class TodoService {
 
   httpClient = inject(HttpClient);
   
-  baseUrl= environment.API_BASE_URL;
+  baseUrl= `${environment.API_BASE_URL}/task`; 
 
   toast=inject(HotToastService)
   router = inject(Router)

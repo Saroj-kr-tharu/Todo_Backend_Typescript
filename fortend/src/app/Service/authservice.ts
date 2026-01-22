@@ -9,7 +9,7 @@ export class Authservice {
   
   http = inject(HttpClient);
   
-  baseUrl= environment.API_BASE_URL; 
+  baseUrl= `${environment.API_BASE_URL}/auth`; 
 
   
   loginService(data:any){
