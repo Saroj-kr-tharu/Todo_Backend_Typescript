@@ -56,6 +56,8 @@ pipeline{
    post {
     success {
         script {
+            buildUserVars()
+            def user = env.BUILD_USER ?: 'System / Webhook'
             emailext(
                 mimeType: 'text/html',
                 attachmentsPattern: 'result.json',
@@ -88,6 +90,10 @@ pipeline{
                                 <tr>
                                   <td><strong>Build Number</strong></td>
                                   <td>#${env.BUILD_NUMBER}</td>
+                                </tr>
+                                <tr>
+                                  <td><strong>Triggered By </strong></td>
+                                  <td>#${user}</td>
                                 </tr>
                                 <tr>
                                   <td><strong>Status</strong></td>
@@ -126,6 +132,8 @@ pipeline{
 
     failure {
         script {
+            buildUserVars()
+            def user = env.BUILD_USER ?: 'System / Webhook'
             emailext(
                 mimeType: 'text/html',
                 attachmentsPattern: 'result.json',
@@ -158,6 +166,10 @@ pipeline{
                                 <tr>
                                   <td><strong>Build Number</strong></td>
                                   <td>#${env.BUILD_NUMBER}</td>
+                                </tr>
+                                <tr>
+                                  <td><strong>Triggered By</strong></td>
+                                  <td>#${user}</td>
                                 </tr>
                                 <tr>
                                   <td><strong>Status</strong></td>
