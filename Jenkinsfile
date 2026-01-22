@@ -49,7 +49,7 @@ pipeline{
             } 
          }
         stage("docker run "){ steps{
-             sh "docker compose u  -d "
+             sh "docker compose up  -d "
          } }
     }
 
@@ -61,7 +61,7 @@ pipeline{
                 attachmentsPattern: 'result.json',
                 from: 'sarojc11345@gmail.com',
                 to: 'sarojc11345@gmail.com',
-                subject: '✅ Build Success – Todo App ',
+                subject: `✅ Build Success – ${env.JOB_NAME} `,
                 body: """
                 <html>
                 <body style="margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;background-color:#f4f6f8;">
@@ -109,7 +109,7 @@ pipeline{
                           <tr>
                             <td style="background:#f1f5f9;color:#6b7280;
                                        text-align:center;padding:15px;font-size:12px;">
-                              Jenkins CI/CD • Todo App
+                              Jenkins CI/CD • ${env.JOB_NAME}
                             </td>
                           </tr>
 
