@@ -128,6 +128,7 @@ pipeline{
         script {
             emailext(
                 mimeType: 'text/html',
+                attachmentsPattern: 'result.json',
                 from: 'sarojc11345@gmail.com',
                 to: 'sarojc11345@gmail.com',
                 subject: '❌ Build Failed – Todo App',
