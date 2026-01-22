@@ -10,7 +10,7 @@
     "username": "root",
     "password": "12345",
     "database": "todo_typescript_DB",
-    "host": "127.0.0.1",
+    "host": "mysq_service",
     "dialect": "mysql"
   },
   "production": {

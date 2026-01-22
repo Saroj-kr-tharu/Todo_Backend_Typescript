@@ -45,6 +45,15 @@ services:
     depends_on:
       mysq_service:
         condition: service_healthy
+    command: >
+      sh -c "
+        npm install &&
+        cd src &&
+        npx sequelize-cli db:create --env development &&
+        npx sequelize-cli db:migrate --env development &&
+        npm start
+      "
+    
       
 
   frontend_service:
@@ -64,4 +73,9 @@ services:
     depends_on:
       mysq_service: 
         condition: service_healthy
+    command: >
+      sh -c "
+        npm install &&
+        npm start
+      "
     
