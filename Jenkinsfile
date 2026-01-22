@@ -19,9 +19,9 @@ pipeline{
                 
 
                 withCredentials( [
-                    file(credentialsId: 'todo-backend-env-1', variable: 'BACKEND_ENV'),
+                    file(credentialsId: 'backend-todo-env', variable: 'BACKEND_ENV'),
                     file(credentialsId: 'environment-todo', variable: 'FRONTEND_ENV'),
-                    file(credentialsId: 'env-mysql', variable: 'MYSQL_ENV')
+                    file(credentialsId: 'mysql-todo-env', variable: 'MYSQL_ENV')
                 ] ){
                     sh '''
                         cp $MYSQL_ENV environment/.env.mysql

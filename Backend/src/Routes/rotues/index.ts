@@ -10,7 +10,6 @@ import taskMiddlewares from '../../Middlewares/taskMiddlewares';
 const router = express.Router();
 
 
-
 router.get("/ping", (req:Request, res:Response)    => {
   return res.json({ message: "Auth Server is good to GO" });
 });
