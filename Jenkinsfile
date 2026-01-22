@@ -61,7 +61,7 @@ pipeline{
                 attachmentsPattern: 'result.json',
                 from: 'sarojc11345@gmail.com',
                 to: 'sarojc11345@gmail.com',
-                subject: `✅ Build Success – ${env.JOB_NAME} `,
+                subject: "✅ Build Success – ${env.JOB_NAME} ",
                 body: """
                 <html>
                 <body style="margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;background-color:#f4f6f8;">
