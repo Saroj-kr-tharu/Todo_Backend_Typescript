@@ -1,0 +1,35 @@
+stages: 
+  - build 
+  - test 
+  - push 
+  - deploy 
+
+build_job: 
+  stage: build 
+  script: 
+    - echo " Building the Project "
+    - docker compose build  
+  
+test_unit_job:
+  stage: test
+  script: 
+    - echo " Unit Testing  "
+
+test_integration:
+  stage: test 
+  script: 
+    - echo " Integration Test "
+
+push_job: 
+  stage: push 
+  script: 
+    - echo " Pushing docker compose image to docker hub "
+    - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+    - docker compose push 
+
+
+deploy_job: 
+  stage: deploy 
+  script: 
+    - echo " docker composing up  "
+    - docker compose up -d 
