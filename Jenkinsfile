@@ -2,10 +2,9 @@ pipeline{
     agent {label "dev" }
 
     stages{
-        stage("Clone Code"){ steps{
+        stage("Clone Code"){
+           steps{
             git url : "https://github.com/Saroj-kr-tharu/Todo_Backend_Typescript", branch :"main"
-
-            
          } }
 
         stage("scan file system"){ steps{ 
@@ -15,8 +14,6 @@ pipeline{
         stage("Inject environment"){ steps{
                 sh "rm -rf environment"
                 sh "mkdir -p environment"
-
-                
 
                 withCredentials( [
                     file(credentialsId: 'backend-todo-env', variable: 'BACKEND_ENV'),

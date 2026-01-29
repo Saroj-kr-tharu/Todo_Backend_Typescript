@@ -4,32 +4,63 @@ stages:
   - push 
   - deploy 
 
+.inject_env_template: &inject_env
+  - echo "Injecting environment files"
+  - rm -rf environment
+  - mkdir -p environment  
+  - cp $MYSQL_ENV environment/.env.mysql
+  - cp $BACKEND_ENV environment/.env.backend
+  - rm -rf fortend/src/environment
+  - mkdir -p fortend/src/environment
+  - cp $FRONTEND_ENV fortend/src/environment/environment.ts
+
 build_job: 
-  stage: build 
+  stage: build
+  tags:
+    - dev
   script: 
-    - echo " Building the Project "
-    - docker compose build  
+    - *inject_env
+    - echo "Building the Project"
+    - docker compose build
   
 test_unit_job:
   stage: test
+  tags:
+    - dev
   script: 
-    - echo " Unit Testing  "
+    - echo "Unit Testing"
 
 test_integration:
-  stage: test 
+  stage: test
+  tags:
+    - dev
   script: 
-    - echo " Integration Test "
+    - echo "Integration Test"
 
 push_job: 
-  stage: push 
+  stage: push
+  tags:
+    - dev
   script: 
-    - echo " Pushing docker compose image to docker hub "
+    - *inject_env
+    - echo "Pushing docker compose images to docker hub"
     - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
-    - docker compose push 
+    - docker compose push
+    - echo "Images pushed successfully"
 
 
 deploy_job: 
-  stage: deploy 
+  stage: deploy
+  tags:
+    - dev
   script: 
-    - echo " docker composing up  "
-    - docker compose up -d 
+    - *inject_env
+    - echo "Stopping existing containers"
+    - docker compose down || true
+    - echo "Pulling latest images"
+    - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+    - docker compose pull
+    - docker compose up -d
+    - echo "Deployment complete"
+    
+  
